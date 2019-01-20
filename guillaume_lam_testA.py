@@ -29,11 +29,47 @@ def overlaps(rng1: Range, rng2: Range) -> bool:
     else:
         return True
 
-def main():
-    rng1 = Range(6,6)
-    rng2 = Range(6,8)
+def coord_input(point: str):
+    while True:
+        try:
+            coord = int(input("Please enter coordinate of " + point + ": "))
+        except ValueError:
+            print("Sorry that wasn't valid")
+            continue
+        else:
+            break
+    return coord
 
-    print(overlaps(rng1, rng2))
+def line_input():
+    x1 = coord_input("x1")
+    x2 = coord_input("x2")
+    y1 = coord_input("y1")
+    y2 = coord_input("y2")
+
+    rng1 = Range(x1, x2)
+    rng2 = Range(y1, y2)
+
+    if overlaps(rng1, rng2):
+        print("The two ranges do overlap")
+    else:
+        print("The two ranges do not overlap")
+
+    while True:
+        ans = input("Would you like to keep using the tool? [y/n]: ")
+        if ans == "Y" or ans == "y":
+            break
+        elif ans == "N" or ans == "n":
+            raise ValueError('Tool completion')
+        else:
+            print("Sorry please reinput your answer!")
+
+def main():
+    print("Press CTRL-C at any point to stop early!")
+    try:
+        while True:
+            line_input()
+    except (KeyboardInterrupt, ValueError):
+         print("\nThank you for using the overlap tool.")
 
 if __name__ == "__main__":
     main()
