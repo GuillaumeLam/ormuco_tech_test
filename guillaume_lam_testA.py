@@ -18,7 +18,8 @@ class Range:
     # of the range rather than changing directly, then we can also recall
     # the calc_len()
 
-# method to check if two Range objects overlap
+
+# function to check if two Range objects overlap
 # as it takes as input the Range object, if lists/tuples were initially
 # available, porting them to Range objects would be simple
 def overlaps(rng1: Range, rng2: Range) -> bool:
@@ -29,6 +30,7 @@ def overlaps(rng1: Range, rng2: Range) -> bool:
     else:
         return True
 
+# function to keep getting a valid value for the ranges
 def coord_input(point: str):
     while True:
         try:
@@ -40,6 +42,8 @@ def coord_input(point: str):
             break
     return coord
 
+# function for getting point from user and using the above methods to determine
+# whether there is overlap
 def line_input():
     x1 = coord_input("x1")
     x2 = coord_input("x2")
@@ -63,6 +67,7 @@ def line_input():
         else:
             print("Sorry please reinput your answer!")
 
+# exception catch incase user wants to end tool prematurely
 def main():
     print("Press CTRL-C at any point to stop early!")
     try:
