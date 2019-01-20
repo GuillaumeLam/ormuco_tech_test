@@ -22,10 +22,15 @@ class Range:
 # as it takes as input the Range object, if lists/tuples were initially
 # available, porting them to Range objects would be simple
 def overlaps(rng1: Range, rng2: Range) -> bool:
-    return True
+    # there are quite a few cases were the ranges are overlapping but only two
+    # cases were there are not
+    if rng1.right < rng2.left or rng2.right < rng1.left:
+        return False
+    else:
+        return True
 
 def main():
-    rng1 = Range(5,1)
+    rng1 = Range(6,6)
     rng2 = Range(6,8)
 
     print(overlaps(rng1, rng2))
