@@ -3,7 +3,10 @@ from threading import RLock
 import sys
 import time
 
+# class which implements an ExpiringDict based on the existing OrderedDict in
+# python 3
 class ExpiringDict(OrderedDict):
+        #def __init__(self, cache_len, max_age, neighbour_nodes=None, off_sync_time):
         def __init__(self, cache_len, max_age):
             assert cache_len >= 1
             assert max_age >= 0
@@ -14,6 +17,12 @@ class ExpiringDict(OrderedDict):
             self.lock = RLock()
 
             self._safe_keys = lambda: list(self.keys())
+
+            # Attricbutes needed for geo distributed
+            # self.latest = time.gmtime()
+            # self.n_nodes = []
+            # self.n_nodes.append(neighbour_nodes)
+            # self.off_sync_time =
 
         # method which returns true if dictionary has the key
         def __contains__(self, key):
@@ -102,3 +111,13 @@ class ExpiringDict(OrderedDict):
                 except KeyError:
                     pass
             return r
+
+"""
+To have a distributed caching system, everytime a new entry is set, it must
+propagate this change to neighbouring nodes. Each dictionary must also have a
+latest time it was synced. This also means that there must be a graph/network of
+dictionaries which update each other. As for the problem with downtime, the sync
+time could be used to determine if a dictionary is too far behind and the whole
+dictionary must be updated.
+"""
+        #def sync(self):
