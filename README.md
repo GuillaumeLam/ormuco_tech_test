@@ -44,3 +44,10 @@ be totally updatd. Secondly, we need a list of neighbouring nodes to propagate
 the changes throughout the network. Since having one way knowledge of nodes is
 not ideal, a class for the edges was going to be created to allow both nodes to
 know of each other.
+
+Here is an example of how the library would be used:
+```
+cache = ExpiringDict(cache_len=10, max_age=10)
+cache["key"] = "val"
+print(cache.get("key"))
+```
