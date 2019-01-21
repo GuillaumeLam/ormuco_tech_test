@@ -45,7 +45,7 @@ class ExpiringDict(OrderedDict):
         # method which assigns value to key
         def __setitem__(self, key, value):
             with self.lock:
-                if len(self) == self.max_len:
+                if len(self) == self.cache_len:
                     try:
                         self.popitem(last=False)
                     except KeyError:
