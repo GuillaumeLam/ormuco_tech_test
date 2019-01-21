@@ -1,4 +1,4 @@
-# Ormuch technical test_base
+# Ormuco technical test
 
 ## A
 This question wanted a program which determined if two ranges would overlap.
